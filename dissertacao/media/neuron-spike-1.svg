@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="491"
+   height="485"
+   version="1.0"
+   id="svg221"
+   sodipodi:docname="neuron-spike-1.svg"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+  <metadata
+     id="metadata227">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs225" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1366"
+     inkscape:window-height="733"
+     id="namedview223"
+     showgrid="false"
+     inkscape:zoom="1.1360825"
+     inkscape:cx="223.92715"
+     inkscape:cy="264.20869"
+     inkscape:window-x="0"
+     inkscape:window-y="16"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg221" />
+  <g
+     fill="none"
+     stroke="#000"
+     id="g167">
+    <path
+       d="M56.38 288.79H194.96"
+       stroke="#898989"
+       id="path151" />
+    <g
+       id="g161"
+       stroke-width="3"
+       stroke="red">
+      <path
+         d="M224.17 323.48c83.52 0 167.05 0 250.57 0"
+         id="path153" />
+      <path
+         d="M56.38 323.48h418.36"
+         id="path155"
+         stroke-dasharray="6,3"
+         stroke="#898989" />
+      <path
+         d="M56.38 323.48H184.93c3.31-10.84 6.85-22.29 10.41-33.81 12.31-39.84 24.87-80.58 28.75-100.01 29.02-145.56 39.12-136.86 47.59 3.16 4.1 67.6 22.1 144.99 39.01 173.88 26.48 45.25 40.98 60.66 75.55 7.83 31.63-48.35 43.28-50.45 88.5-51.05"
+         id="path157" />
+      <rect
+         style="opacity:1;fill:#ffffff;fill-opacity:0.99090911;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none"
+         id="rect287"
+         width="138.72214"
+         height="241.80035"
+         x="184.92999"
+         y="81.679642" />
+      <rect
+         style="opacity:1;fill:#ffffff;fill-opacity:0.99090911;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none"
+         id="rect1096"
+         width="253.32004"
+         height="100.20768"
+         x="185.47757"
+         y="313.8378"
+         ry="0" />
+    </g>
+    <path
+       d="M56.38 19.28V433.13H477"
+       stroke-width="2"
+       id="path165" />
+  </g>
+  <g
+     font-family="Verdana"
+     font-size="16"
+     id="g219">
+    <text
+       x="-243"
+       y="20"
+       transform="rotate(-90)"
+       id="text171">Voltage (mV)</text>
+    <text
+       x="59.9"
+       y="286.28"
+       id="text177">Threshold</text>
+    <text
+       x="17.9"
+       y="91.9"
+       id="text197">+40</text>
+    <text
+       x="41.1"
+       y="190.1"
+       id="text199">0</text>
+    <text
+       x="23.8"
+       y="295.1"
+       id="text201">-55</text>
+    <text
+       x="23.7"
+       y="328.4"
+       id="text203">-70</text>
+    <text
+       x="96.6"
+       y="450.2"
+       id="text205">0</text>
+    <text
+       x="166.1"
+       y="450.2"
+       id="text207">1</text>
+    <text
+       x="232.8"
+       y="450.2"
+       id="text209">2</text>
+    <text
+       x="302.9"
+       y="450.2"
+       id="text211">3</text>
+    <text
+       x="374.4"
+       y="450.2"
+       id="text213">4</text>
+    <text
+       x="441"
+       y="450"
+       id="text215">5</text>
+    <text
+       x="232.5"
+       y="473.4"
+       id="text217">Time (ms)</text>
+  </g>
+  <rect
+     style="opacity:1;fill:#ffffff;fill-opacity:0.99090911;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none"
+     id="rect1102"
+     width="3.1907895"
+     height="9.6823959"
+     x="183.69044"
+     y="317.26349" />
+  <rect
+     style="opacity:1;fill:#ffffff;fill-opacity:0.99090911;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none"
+     id="rect1104"
+     width="54.7719"
+     height="51.659863"
+     x="425.72705"
+     y="300.14484" />
+</svg>

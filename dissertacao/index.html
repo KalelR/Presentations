@@ -1,0 +1,643 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Thesis Defense - Kalel Luiz Rossi</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/white.css">
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="plugin/toc-progress/toc-progress.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+            <section data-background="./media/fundo-capa.jpg">
+                <aside class="notes"> Sincronização de fase e metastabilidade em redes neurais </aside>
+                <h1> Sincronização de fase e metastabilidade em redes neurais</h1>
+                <hr>
+                <div>
+                    Kalel Luiz Rossi<br>
+                    <p style="font-size:61.8%"> 
+                        Pré-defesa de Mestrado<br>
+                        UFPR<br>
+                    </p>
+                </div>
+            </section>
+        
+
+        <section data-background="#333"> 
+            <section> 
+                <h2> Introdução </h2>
+            </section>
+
+
+            <section data-background="#333">
+            <!-- <section data-background="#000080"> -->
+            <!-- <section > -->
+                <aside class="notes">  </aside>
+                <h2> Sobre o que vou falar</h2>
+                <p class="fragment"> Rede de neurônios com bursts</p>
+                <p class="fragment"> Comportamento, sincronização de fase</p>
+                <p class="fragment"> Estudo de metastabilidade em neurociência</p>
+            </section>
+
+            <section data-background="#333">
+                <aside class="notes">  </aside>
+                <h2> Outline </h2>
+                    <p class="fragment">Introdução</p>
+                    <p class="fragment">Metodologia</p>
+                    <p class="fragment">Resultados, discussões </p>
+                    <p class="fragment">Conclusões </p>
+            </section>
+            
+
+            <section data-background="#333">
+                <aside class="notes">  </aside>
+                <h2> Motivação - Sincronização de fase</h2>
+                <p class="fragment"> Fase: variável para indicar o status atual de uma oscilação. </p>
+                <p class="fragment"> Sincronização: atividade ocorrendo simultâneamente </p>
+            </section>
+
+            <section data-background="#333" class="no-toc-progress">
+                <aside class="notes">  </aside>
+                <!-- <h2> Motivação - Sincronização de fase</h2> -->
+                <video data-autoplay src="./media/phasesynchronization-sin-synchronized_n100_fps16.mp4"></video>
+            </section>
+
+            <section data-background="#333" class="no-toc-progress">
+                <aside class="notes">  </aside>
+                <!-- <h2> Motivação - Sincronização de fase</h2> -->
+                <video data-autoplay src="./media/phasesynchronization-sin-desynchronized_n100_fps16.mp4"></video>
+            </section>
+
+
+            <section data-background="#333" class="no-toc-progress">
+                <aside class="notes">  </aside>
+                <!-- <h2> Motivação - Por que estudar sincronização de fase</h2> -->
+                <h2> Sincronização de fase</h2>
+                <h3> Crucial para:</h3>
+                <p class="fragment"> Memória (Fell, 2011)</p>
+                <p class="fragment"> Consciência (Gaillard, 2009)</p>
+                <p class="fragment"> Percepção (Rodriguez, 2019)</p>
+            </section>
+
+
+            <section data-background="#333" class="no-toc-progress">
+                <aside class="notes">  </aside>
+                <!-- <h2> Motivação - Por que estudar sincronização de fase</h2> -->
+                <h2> Sincronização de fase</h2>
+                <h3> Disrupção associada a (Uhlhaas, 2006) </h3>
+                <p class="fragment"> Epilepsia </p>
+                <p class="fragment"> Parkinson </p>
+                <p class="fragment"> Autismo</p>
+            </section>
+
+            <section data-background="#333" class="no-toc-progress">
+                <aside class="notes">  </aside>
+                <!-- <h2> Motivação - Por que estudar sincronização de fase</h2> -->
+                <h3> Mecanismos teóricos </h3>
+                <p class="fragment"> Communication-through-coherence (Fries, 2005) </p>
+                <p class="fragment"> Binding-by-synchrony (Singer, 1999) </p>
+            </section>
+
+            <section data-background="#333">
+                <aside class="notes">  </aside>
+                <h2> Motivação - Metastabilidade </h2>
+                <p class="fragment"> Regime em que os padroes de atividade de um sistema variam incessantemente </p>
+            </section>
+            
+            <section data-background="#333"class="no-toc-progress" >
+                <aside class="notes">  </aside>
+                <!-- <h2> Motivação - Por que estudar metastabilidade </h2> -->
+                <video data-autoplay src="./media/metastability-video.mp4"></video>
+                <p> Tirado de (Ma, 2016) </p>
+            </section>
+
+            <section data-background="#333" class="no-toc-progress">
+                <aside class="notes">  </aside>
+                <!-- <h2> Motivação - Por que estudar metastabilidade </h2> -->
+                <h2> Metastabilidade</h2>
+                <!-- Metastabilidade  -->
+                <!-- <p class="fragment"> Integração-segregação (Kelso,2012) </p>             -->
+                <!-- <p class="fragment"> Leva à formação de ensembles neurais transientes (Kelso,2012) </p>             -->
+                <p class="fragment"> Metastabilidade constitui a base para a dinâmica da atividade cortical (Bressler, 2016)</p>
+                <p class="fragment"> Sequência de estados cerebrais representa o fluxo de pensamento (stream of thoughts) (Fingelkurts, 2008)</p>
+            </section>
+
+        
+    </section data-background="#333"> 
+    <!-- end of introduction section -->
+    
+    <section>
+         <section data-background="#333">
+         <h1> Metodologia </h1> 
+        </section>     
+        
+        <section data-background="#333 ">
+            <aside class="notes">  </aside>
+            <h2> Redes neurais</h2>
+            Uma rede neural possui três ingredientes básicos 
+            <p class="fragment"> Neurônio </p>
+            <p class="fragment"> Sinapse  </p>
+            <p class="fragment"> Topologia </p>
+        </section>
+    
+        
+        <section data-background="#333" class="no-toc-progress" >
+            <aside class="notes">  </aside>
+            <h2> Neurônio </h2>
+            <img data-autoplay src="./media/neuronio.png"></img>
+            <p> Tirado de (Brown, 1999) </p>
+        </section>
+
+        <section data-background="#333" class="no-toc-progress" >
+            <aside class="notes">  </aside>
+            <h2> Neurônio </h2>
+            <img data-autoplay src="./media/neuron-spike.gif"></img>
+            <p> Tirado de https://commons.wikimedia.org/wiki/File:Action_Potential.gif </p>
+        </section>
+
+        <section data-background="#333" class="no-toc-progress" >
+            <aside class="notes">  </aside>
+            <h2> Neurônio </h2>
+            <img data-autoplay src="./media/neuron-ion-concentrations.png"></img>
+        </section>
+        
+        <section data-background="#333" class="no-toc-progress" data-transition="fade" >
+            <aside class="notes">  </aside>
+            <!-- <h2> Neurônio </h2> -->
+            <img data-autoplay src="./media/neuron-spike-1.png"></img>
+        </section>
+    
+        <section data-background="#333" class="no-toc-progress" data-transition="fade">
+            <aside class="notes">  </aside>
+            <!-- <h2> Neurônio </h2> -->
+            <img data-autoplay src="./media/neuron-spike-2.png"></img>
+        </section>
+        
+        <section data-background="#333" class="no-toc-progress" data-transition="fade">
+            <aside class="notes">  </aside>
+            <!-- <h2> Neurônio </h2> -->
+            <img data-autoplay src="./media/neuron-spike-3.png"></img>
+        </section>
+
+        
+        <section data-background="#333" class="no-toc-progress" data-transition="fade">
+            <aside class="notes">  </aside>
+            <!-- <h2> Neurônio </h2> -->
+            <img data-autoplay src="./media/neuron-spike-4.png"></img>
+        </section>
+
+
+        <section data-background="#333" class="no-toc-progress" >
+            <aside class="notes">  </aside>
+            <h2> Modelagem </h2>
+            <img data-autoplay src="./media/equivalent-circuit-kalel.png"></img>
+        </section>
+
+        
+        <section data-background="#333" class="no-toc-progress" >
+            <aside class="notes">  </aside>
+            <h2> Equações de Hodgkin-Huxley</h2>
+            \[\begin{align}
+            C_\mathrm{M} \dot{V} &= I - \overline{g}_{\mathrm{K}} n^4(V-E_{\mathrm{K}}) - \overline{g}_{\mathrm{Na}} m^3 h (V- E_{\mathrm{Na}}) - g_{\mathrm{L}} (V - E_{\mathrm{L}})\\ 
+            \dot{n} &= \alpha_n(V) (1-n) - n\beta_n(V) \\ 
+            \dot{m} &= \alpha_m(V)(1-m) - m\beta_m(V) \\ 
+            \dot{h} &= \alpha_h(V)(1-h) - h\beta_h(V)
+            \end{align}\]
+        </section>
+
+        <section data-background="#333" class="no-toc-progress" >
+            <aside class="notes">  </aside>
+            <video data-autoplay src="./media/HH-potential_n150_fps22.mp4"></video>
+        </section>
+        
+        <section data-background="#333" class="no-toc-progress" >
+            <aside class="notes">  </aside>
+            <img data-autoplay src="./media/HH-nobel.jpeg"></img>
+        </section>
+
+
+        <section data-background="#333" class="no-toc-progress" >
+            <aside class="notes">  </aside>
+            <h2> Modelo de Huber-Braun </h2>
+            \[\begin{align}C_\mathrm{M} \frac{dV_i(t)}{dt} &= -I_{\mathrm{d}} - I_{\mathrm{r}} - I_{\mathrm{l}} - I_{\mathrm{sd}} - I_{\mathrm{sr}} - I_{\mathrm{ext}}\\
+             \end{align}\]
+        </section>
+        
+        <section data-background="#333" class="no-toc-progress" >
+            <aside class="notes">  </aside>
+            <video data-autoplay loop control src="./media/HB-potential_n150_fps22-grayalpha.mp4"></video>
+        </section>
+
+        <!-- <section data-background="#333" class="no-toc-progress">  -->
+        <section class="no-toc-progress"> 
+            <h2> Tempos de disparo </h2>
+            <img data-autoplay src="./media/1Neuron_potential_Spike_Burst_Times_T_38.png"></img>
+        </section>
+        <section data-background="#333" class="no-toc-progress" >
+            <aside class="notes">  </aside>
+            <h2> Influência da temperatura </h2>
+            \[\begin{align}
+            \phi &= \phi_0^{(T-T_0)/\overline{T}_0} \\
+         \rho &= \rho_0^{(T-T_0)/\overline{T}_0}
+         \end{align}\]
+        </section>
+        
+        <section data-background="#333" class="no-toc-progress" >
+            <aside class="notes">  </aside>
+            <img data-autoplay src="./media/oneneuron_potentials_bursttimes_bifurcation_temperatures.png"></img>
+        </section>
+        
+        <section data-background="#333" class="no-toc-progress" >
+            <aside class="notes">  </aside>
+            <h2> Sinapse </h2>
+            <img data-autoplay src="./media/synaptic_connection.png"></img>
+        </section>
+
+        <!-- <section data-background="#333" class="no-toc-progress" >
+            <aside class="notes">  </aside>
+            <h2> Corrente sináptica </h2>
+            \[  I_{i, \mathrm{coup}} = \varepsilon(V_i - E_\mathrm{syn}) \sum\limits_{j \in \Gamma_i} r_j(t).
+            \]
+        </section> -->
+
+            <section data-background="#333" class="no-toc-progress" >
+                <aside class="notes">  </aside>
+                <h2> Topologia aleatória </h2>
+                <img data-autoplay src="./media/topology.png"></img>
+                <p> Figura adaptada de Watts-Strogatz </p>
+            </section> 
+
+
+            <section data-background="#333" class="no-toc-progress"> 
+                <h2> Resumo da rede </h2>
+                <p class="fragment"> Neurônios bursting </p>
+                <p class="fragment"> Sinapses químicas </p>
+                <p class="fragment"> Topologia aleatória </p>
+            </section>
+
+            <section data-background="#333" > 
+                <h2> Medida de sincronização de fase </h2>
+            </section>
+
+
+
+            <section data-background="#333" class="no-toc-progress"> 
+                <h2> Definição de fase </h2>
+                \[\theta_{i}(t) = 2\pi k_i + 2\pi \frac{t - t_{k,i}}{t_{k+1, i} - t_{k,i}}, \; (t_k < t < t_{k+1}) \]
+            </section>
+
+            <section data-background="#333" class="no-toc-progress"> 
+                <h2> Parâmetro de ordem de Kuramoto </h2>
+                \[ R(t) = \frac{1}{N}\left|\sum\limits_{i=1}^N e^{j\theta_i(t)}\right|
+                \]
+                <p class="fragment"> \[R(t) = 1\] -> Sincronização de fase completa </p>
+                <p class="fragment"> \[R(t) = 0\] -> Desincronização de fase </p>
+            </section>
+
+            <section data-background="#333" > 
+                <h2> Variabilidades </h2>
+            </section>
+
+
+            <section data-background="#333" class="no-toc-progress" >
+                <aside class="notes">  </aside>
+                <h2> Um neurônio </h2>
+                <img data-autoplay src="./media/variabilidade/matrix-IBI-1N-rect-CV.png"></img>
+            </section> 
+            
+            <section data-background="#333" class="no-toc-progress"> 
+                <h2> Rede </h2>
+                <img data-autoplay src="./media/variabilidade/matrix-IBI.png"></img>
+            </section>
+
+            <section data-background="#333" class="no-toc-progress" >
+                <aside class="notes">  </aside>
+                <h2> Temporal </h2>
+                <img data-autoplay src="./media/variabilidade/matrix-IBI-temporal-rects.png"></img>
+            </section> 
+
+            <section data-background="#333" class="no-toc-progress" >
+                <aside class="notes">  </aside>
+                <h2> Ensemble </h2>
+                <img data-autoplay src="./media/variabilidade/matrix-IBI-ensemble-rects.png"></img>
+            </section>
+
+            <section data-background="#333" > 
+                <h2> Drift médio </h2>
+            </section>
+
+            <section data-background="#333" class="no-toc-progress" > 
+                <h2> Drift médio </h2>
+                <!-- \[    \Delta = \frac{1}{N(N-1)} \sum\limits_{i,j, i \neq j}^{N} \langle \Delta_{ij} \rangle  \equiv \overline{\langle \Delta_{ij} \rangle}  -->
+                <!-- \] -->
+                \[\Delta\] mede quanto, em média, os tempos de disparo relativos mudam com o tempo. 
+                <p class="fragment"> \[\Delta = 0\] -> Neurônios estão phase-locked </p>
+                <p class="fragment"> \[\Delta >0 \] -> Tempos relativos estão mudando </p>
+            </section>
+
+            <section data-background="#333" > 
+                <h2> Análise de clustering </h2>
+                <p class="fragment"> Agrupa neurônios com fases semelhantes</p>
+            </section>
+
+            <section data-background="#333" class="no-toc-progress" > 
+                <h2> Como calcular os clusters</h2>
+                <p class="fragment"> Calcula diferença entre fases do cluster e fase dos neurônios fora. </p>
+                <p class="fragment"> Colocar no cluster os neurônios com diferença de fase abaixo de um limiar \[\Phi_\mathrm{th}\] </p>
+                <p class="fragment"> $\Phi_C$ -> quão parecidas são as fases</p>
+            </section>
+
+            <section data-background="#333" class="no-toc-progress"> 
+                <h2> $\Phi_\mathrm{th} = 0.1$ </h2>
+                <img data-autoplay src="./media/clusters_histograms_1panel_1cluster_0.00084.png"></img>
+            </section>
+
+            <section data-background="#333" class="no-toc-progress"> 
+                <h2> $\Phi_\mathrm{th} = 0.05$ </h2>
+                <img data-autoplay src="./media/clusters_histograms_1panel_1cluster_0.00084_th0.05.png"></img>
+            </section>
+
+            <section data-background="#333" class="no-toc-progress"> 
+                <h2> Calculando taxa de mudança na composição de um cluster </h2>
+                <p> $\mathcal{P}$: taxa de mudança na composição de um cluster.</p>
+            </section>
+
+            <section data-background="#333" class="no-toc-progress" data-transition="fade"> 
+                <!-- <h2> Calculando taxa de mudança na composição de um cluster </h2> -->
+                <img data-autoplay src="./media/clusters/1.png"></img>
+            </section>
+
+            <section data-background="#333" class="no-toc-progress" data-transition="fade"> 
+                <img data-autoplay src="./media/clusters/2.png"></img>
+            </section>
+
+            <section data-background="#333" class="no-toc-progress" data-transition="fade"> 
+                <img data-autoplay src="./media/clusters/3.png"></img>
+            </section>
+
+            <section data-background="#333" class="no-toc-progress" data-transition="fade"> 
+                <img data-autoplay src="./media/clusters/4.png"></img>
+            </section>
+
+
+    </section>
+    <!-- end of metodologia -->
+        
+
+    <section> 
+
+        <section data-background="#333" > 
+            <h1> Resultados </h1>
+        </section>
+
+        <section data-background="#333" > 
+            <h2> Parte 1: Sincronização de fase, variabilidade e promiscuidade </h2>
+        </section>
+
+        <section data-background="#333" class="no-toc-progress"> 
+            <img data-autoplay src="./media/R_CV_bifurcation.png"></img>
+            <!-- <!-- <div style="width:500px;height:100px;border:1px solid #000;">This is a rectangle!</div> --> -->
+            <!-- <p style="width:800px;height:170px;border:1px solid #000; position:absolute; left:100px; top:200px">This is a rectangle!</p> -->
+        </section>
+
+        <section data-background="#333" class="no-toc-progress" >
+            <aside class="notes">  </aside>
+            <h2> Variabilidade de Ensemble </h2>
+            <img data-autoplay src="./media/variabilidade/matrix-IBI-ensemble-rects.png"></img>
+        </section>
+
+
+        <section data-background="#333" class="no-toc-progress"> 
+            <img data-autoplay src="./media/mean_drift.png"></img>
+        </section>
+
+        <!-- <section data-background="#333" class="no-toc-progress"> 
+            <video data-autoplay src="./media/"></video>
+        </section> -->
+
+
+        <section data-background="#333" class="no-toc-progress"> 
+            <img data-autoplay src="./media/v2_stayProbability.png"></img>
+        </section>
+
+
+
+        <section data-background="#333" > 
+            <h2> Parte 2: Metastabilidade </h2>
+        </section>
+
+        <section data-background="#333" class="no-toc-progress"> 
+            <img data-autoplay src="./media/brain-scales-betzel2017.png"></img>
+        </section>
+
+
+        <section data-background="#333" class="no-toc-progress"> 
+            <h2> Escalas</h2> 
+            <p class="fragment"> Espacial: granularidade dos nodos</p>
+            <p class="fragment"> Topologica: quantidade de nodos</p>
+            <p class="fragment"> Temporal: escala temporal</p>
+        </section>
+
+
+        <section data-background="#333" class="no-toc-progress"> 
+            <h2> Exemplo 1:</h2> 
+            <p> Variabilidade no grau de sincronização da rede</p>
+            <p class="fragment"> Medida como $\sigma (R(t))$</p>
+            <p class="fragment"> (Lee and Frangou, 2017); (Alderson et al., 2020); (Shanahan, 2010); (Wildie and Shanahan, 2012); (Cabral et al., 2011); (Deco et al., 2017); (Kringelbach et al., 2015); (Váša et al., 2015) </p>
+        </section>
+
+        <section data-background="#333" class="no-toc-progress"> 
+            <h2> Exemplo 2:</h2> 
+            <p> Metastabilidade levando à formação de clusters transientes</p>
+            <p class="fragment"> Medida como a taxa de mudança na composição de clusters</p>
+        </section>    
+
+
+        <section data-background="#333" class="no-toc-progress"> 
+            <h2> Exemplo 3:</h2> 
+            <p> Mudança nas diferenças de fases entre os nodos</p>
+            <p class="fragment"> Medida como $\sigma(R_{ij}(t))$</p>
+        </section>    
+
+
+        <section data-background="#333" class="no-toc-progress"> 
+            <img data-autoplay src="./media/Rxt_Rijxt_T38.png"></img>
+        </section>
+
+        <section data-background="#333" class="no-toc-progress"> 
+            <!-- <img data-autoplay src="./media/R_stdR_stayProb_stdRij.png"></img> -->
+             <img height=800px src="./media/R_stdR_stayProb_stdRij.png"></img>
+        </section>
+    </section>
+    <!-- end of results -->
+
+
+
+    <section> 
+        <section data-background="#333" > 
+            <h1> Conclusões  </h1>
+        </section>
+
+        <section data-background="#333" > 
+            <h2> Parte 1  </h1>
+                <p class="fragment"> Caracterização do comportamento da rede, </p>
+                <p class="fragment"> Comportamento da rede e as variabilidades, </p>
+                <p class="fragment"> Importância da dinâmica individual, </p>
+                <p class="fragment"> Promiscuidade, </p>
+        </section>
+
+
+        <section data-background="#333" > 
+            <h2> Parte 1 - Variabilidade e Metastabilidade </h1>
+                <p class="fragment"> Metastabilidade ocorrendo numa rede sem clusterização e com neurõnios idênticos, </p>
+                <p class="fragment"> Variabilidade mede a assimetria dinâmica </p>
+        </section>
+
+
+        <section data-background="#333" > 
+            <h2> Parte 2 - Metastabilidade </h1>
+                <p class="fragment"> Definição de metastabilidade. </p>
+                <p class="fragment"> Importância de estudar várias escalas e as relações entre elas. </p>
+                <p class="fragment"> Ilustração numa rede relativamente simples. </p>
+        </section>
+
+
+    </section>
+    <!-- end of conclusions -->
+
+
+
+
+    <!-- <section data-background="#333">
+            <aside class="notes">  </aside>
+    
+        </section> </section>> -->
+
+        <!-- <section data-background="#333"> -->
+            <!-- <h1> Thank you!</h1>  -->
+        <!-- </section> -->
+
+        
+        <!-- Supplementary slides.  -->
+    <section>
+
+        <section data-background="#333" class="no-toc-progress">
+            <h1> Supplementary slides</h1>
+            <hr>
+        </section>
+
+        <section data-background="#333" class="no-toc-progress" > 
+          <h2> Como calcular clusters </h2>
+            <p class="fragment"> Neuronio 1: \[\phi = 0\]</p>
+            <p class="fragment"> Neuronio 2: \[\phi = 2\pi\]</p>
+            <p class="fragment"> Sincronizados, mas \[ \Delta \phi \neq 0  \] </p>
+        </section>
+
+        <section data-background="#333" class="no-toc-progress" > 
+        <h2> Transformação de fase </h2>
+            \[    \Phi(\phi) = \frac{|\mathrm{mod}(\phi,2\pi) - \pi|}{\pi}
+            \]
+            <p class="fragment"> \[[-\infty, +\infty] \rightarrow [0, 2\pi] \] </p>
+            <p class="fragment"> \[[0, 2\pi] \rightarrow [-\pi, \pi] \] </p>
+            <p class="fragment"> \[[-\pi, \pi] \rightarrow [0, \pi] \] </p>
+            <p class="fragment"> \[[0, \pi] \rightarrow [0, 1] \] </p>
+        </section>
+
+        <section data-background="#333" class="no-toc-progress" > 
+            <h2> Transformação de fase </h2>
+            <p class="fragment"> Neuronio 1: \[\phi = 0 \rightarrow \Phi = 0\]</p>
+            <p class="fragment"> Neuronio 2: \[\phi = 2\pi \rightarrow \Phi = 0\]</p>
+            <p class="fragment"> Sincronizados, e \[\Delta \Phi = 0\] </p>
+            </section>
+
+
+            <section data-background="#333" class="no-toc-progress" > 
+            <h2> Como calcular clusters </h2>
+            <p class="fragment"> Passo 1: escolhe um neuronio inicial,  coloca no cluster, e atualiza a fase média do cluster -> \[\Phi_C\] </p>
+            <p class="fragment"> Passo 2: Calcula a diferença entre a fase do cluster e a fase dos outros neuronios -> \[ \{\Delta \Phi \} \] </p>
+            <p class="fragment"> Passo 3: Escolhe a menor diferença de fase, e compara com um limiar -> \[\min(\Delta \Phi) < \Phi_\mathrm{th} ?\] </p>
+            <p class="fragment"> Passo 4: Se for menor, coloca no cluster, atualiza a fase média, e repete</p>
+            </section>
+
+    </section> 
+    </div>
+</div> 
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+<script src="plugin/math/math.js"></script>
+<script src="plugin/chalkboard/plugin.js"></script>
+<script src="plugin/menu/menu.js"></script>
+
+<script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+        history: true, // Push each slide change to browser history.
+        controls: false, // Remove controls in bottom right corner.
+        width: 1000,
+        height: 800,
+        // backgroundTransition: 'fade', // Make all transitions fade transitions by default. 
+        // transition:'fade',
+        transition:'slide',
+        progress:true,
+        // showSlideNumber: 'all',
+        slideNumber: true,
+        autoPlayMedia: true,
+        math: {
+            mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+            config: 'TeX-AMS_HTML-full',
+            // pass other options into `MathJax.Hub.Config()`
+            TeX: { Macros: { RR: "{\\bf R}" } }
+            },
+        plugins: [ RevealMath],
+
+
+        // backgroundTransition: 'zoom', // Make all transitions fade transitions by default. 
+        // transitionSpeed: 'fast', 
+        // slideTransition:'convex',
+
+        keyboard: {
+            // pause/resume time when Enter is pressed
+            13: () => {
+            ElapsedTimeBar.isPaused ? ElapsedTimeBar.resume() : ElapsedTimeBar.pause();
+            },
+            // reset timer when 'r' is pressed
+            82: () => {
+            ElapsedTimeBar.reset();
+            }},
+
+        allottedTime: 50 * 60 * 1000, // 3 minutes
+        dependencies: [
+            //  { src: 'plugin/title-footer/title-footer.js', async: true, callback: function() { title_footer.initialize(); } },
+            { src: 'reveal.js-plugins/menu/menu.js' },
+            { src: 'plugin/elapsed-time-bar/elapsed-time-bar.js'},
+            { src: 'plugin/math/math.js', async: true },
+             { src: 'plugin/toc-progress/toc-progress.js', async: true, callback: function() { toc_progress.initialize(reducescroll='scroll'); toc_progress.create(); } },
+            // { src: 'plugin/tableofcontents/tableofcontents.js' },
+            { src: 'plugin/markdown/marked.js' },
+            { src: 'plugin/markdown/markdown.js' },
+            { src: 'plugin/notes/notes.js', async: true },
+            { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>
